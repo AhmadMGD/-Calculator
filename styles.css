@@ -1,0 +1,56 @@
+/* Custom styles for the calculator app */
+
+/* Animation for results display */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Tab styling */
+.calculator-tab {
+  transition: all 0.3s ease;
+}
+
+.active-tab {
+  background-color: #3b82f6;
+  color: white;
+  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.2);
+  transform: scale(1.05);
+}
+
+/* Profit/Loss result colors */
+.profit {
+  color: #10b981;
+  background-color: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.loss {
+  color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 640px) {
+  .bg-gray-100 {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .bg-gray-100 a {
+    margin: 2px 0;
+    width: 100%;
+    text-align: center;
+  }
+}

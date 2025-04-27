@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator Tools</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <nav class="bg-white shadow-md sticky top-0 z-10 py-2">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-center h-16">
+        <div class="flex items-center">
+          <div class="bg-gray-100 p-1.5 rounded-xl flex space-x-1">
+            <a href="#percentage" onclick="showCalculator('percentage')" class="calculator-tab active-tab px-5 py-3 text-sm font-medium transition-all duration-200 rounded-lg mx-1">
+              <span class="mr-2">%</span> Percentage Calculator
+            </a>
+            <a href="#gst" onclick="showCalculator('gst')" class="calculator-tab px-5 py-3 text-sm font-medium transition-all duration-200 rounded-lg mx-1">
+              <span class="mr-2">$</span> GST Calculator
+            </a>
+            <a href="#profit-loss" onclick="showCalculator('profit-loss')" class="calculator-tab px-5 py-3 text-sm font-medium transition-all duration-200 rounded-lg mx-1">
+              <span class="mr-2">↗</span> Profit/Loss Calculator
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="percentage" class="calculator-section py-6 md:py-8 px-4">
+    <header class="text-center mb-6">
+      <h1 class="text-3xl md:text-4xl font-bold text-blue-500 mb-2 tracking-tight">
+        Percentage Calculator
+      </h1>
+      <p class="text-gray-600 max-w-md mx-auto">
+        Calculate percentages quickly and easily!
+      </p>
+    </header>
+
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Standard Calculator -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 md:p-8">
+          <h2 class="text-xl font-bold text-blue-500 mb-4">Standard</h2>
+          <div class="space-y-5">
+            <div class="space-y-2">
+              <label for="standardNumber" class="text-sm font-medium text-gray-700">Number</label>
+              <input type="number" id="standardNumber" placeholder="0" class="w-full px-3 py-3 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+            </div>
+            
+            <div class="space-y-2">
+              <label for="standardPercentage" class="text-sm font-medium text-gray-700">Percentage</label>
+              <input type="number" id="standardPercentage" placeholder="0" class="w-full px-3 py-3 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+            </div>
+
+            <div id="standardResult" class="hidden bg-gray-50 rounded-lg p-4 border border-gray-200 animate-fade-in">
+              <h3 class="text-sm font-medium text-gray-700 mb-3">Result</h3>
+              <p id="standardResultValue" class="text-lg font-bold text-blue-500">0</p>
+            </div>
+
+            <button onclick="calculateStandard()" class="w-full py-3 px-4 font-medium bg-blue-500 hover:bg-blue-600 text-white transition-colors rounded-md">Calculate</button>
+            <button onclick="resetStandard()" class="w-full py-3 px-4 font-medium bg-gray-200 hover:bg-gray-300 text-gray-800 transition-colors rounded-md">Reset</button>
+          </div>
+        </div>
+
+        <!-- X% of Y Calculator -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 md:p-8">
+          <h2 class="text-xl font-bold text-blue-500 mb-4">X% of Y</h2>
+          <div class="space-y-5">
+            <div class="space-y-2">
+              <label for="xPercentage" class="text-sm font-medium text-gray-700">Percentage (X)</label>
+              <input type="number" id="xPercentage" placeholder="0" class="w-full px-3 py-3 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+            </div>
+            
+            <div class="space-y-2">
+              <label for="yNumber" class="text-sm font-medium text-gray-700">Number (Y)</label>
+              <input type="number" id="yNumber" placeholder="0" class="w-full px-3 py-3 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+            </div>
+
+            <div id="xOfYResult" class="hidden bg-gray-50 rounded-lg p-4 border border-gray-200 animate-fade-in">
+              <h3 class="text-sm font-medium text-gray-700 mb-3">Result</h3>
+              <p id="xOfYResultValue" class="text-lg font-bold text-blue-500">0</p>
+            </div>
+
+            <button onclick="calculateXOfY()" class="w-full py-3 px-4 font-medium bg-blue-500 hover:bg-blue-600 text-white transition-colors rounded-md">Calculate</button>
+            <button onclick="resetXOfY()" class="w-full py-3 px-4 font-medium bg-gray-200 hover:bg-gray-300 text-gray-800 transition-colors rounded-md">Reset</button>
+          </div>
+        </div>
+
+        <!-- What % is X of Y Calculator -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 md:p-8">
+          <h2 class="text-xl font-bold text-blue-500 mb-4">What % is X of Y</h2>
+          <div class="space-y-5">
+            <div class="space-y-2">
+              <label for="whatX" class="text-sm font-medium text-gray-700">Number (X)</label>
+              <input type="number" id="whatX" placeholder="0" class="w-full px-3 py-3 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+            </div>
+            
+            <div class="space-y-2">
+              <label for="whatY" class="text-sm font-medium text-gray-700">Number (Y)</label>
+              <input type="number" id="whatY" placeholder="0" class="w-full px-3 py-3 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+            </div>
+
+            <div id="whatPercentResult" class="hidden bg-gray-50 rounded-lg p-4 border border-gray-200 animate-fade-in">
+              <h3 class="text-sm font-medium text-gray-700 mb-3">Result</h3>
+              <p id="whatPercentResultValue" class="text-lg font-bold text-blue-500">0%</p>
+            </div>
+
+            <button onclick="calculateWhatPercent()" class="w-full py-3 px-4 font-medium bg-blue-500 hover:bg-blue-600 text-white transition-colors rounded-md">Calculate</button>
+            <button onclick="resetWhatPercent()" class="w-full py-3 px-4 font-medium bg-gray-200 hover:bg-gray-300 text-gray-800 transition-colors rounded-md">Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="gst" class="calculator-section py-6 md:py-8 px-4 hidden">
+    <header class="text-center mb-6">
+      <h1 class="text-3xl md:text-4xl font-bold text-blue-500 mb-2 tracking-tight">
+        GST Calculator
+      </h1>
+      <p class="text-gray-600 max-w-md mx-auto">
+        Easily add or remove GST from any amount!
+      </p>
+    </header>
+
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Add GST Box -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 md:p-8">
+          <div class="space-y-5">
+            <h2 class="text-xl font-bold text-blue-500 mb-4">Add GST</h2>
+            
+            <!-- Amount Input -->
+            <div class="space-y-2">
+              <label for="addAmount" class="text-sm font-medium text-gray-700">
+                Enter Amount
+              </label>
+              <input
+                type="number"
+                id="addAmount"
+                placeholder="0.00"
+                class="w-full px-3 py-3 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+              />
+            </div>
+            
+            <!-- GST Percentage Input -->
+            <div class="space-y-2">
+              <label for="addGstPercentage" class="text-sm font-medium text-gray-700">
+                Enter GST Percentage
+              </label>
+              <input
+                type="number"
+                id="addGstPercentage"
+                placeholder="10"
+                value="10"
+                class="w-full px-3 py-3 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+              />
+            </div>
+            
+            <!-- Results Section -->
+            <div id="addGstResults" class="hidden bg-gray-50 rounded-lg p-4 border border-gray-200 animate-fade-in">
+              <h3 class="text-sm font-medium text-gray-700 mb-3">Results</h3>
+              <div class="space-y-3">
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <p class="text-xs text-gray-500 mb-1">GST Amount:</p>
+                    <p id="addGstAmount" class="text-lg font-medium text-gray-800">$0.00</p>
+                  </div>
+                  <div>
+                    <p class="text-xs text-gray-500 mb-1">Amount with GST:</p>
+                    <p id="addFinalAmount" class="text-lg font-bold text-blue-500">$0.00</p>
+                  </div>
+                </div>
+                
+                <div class="pt-2 text-xs text-gray-500" id="addGstFormula">
+                  $0.00 + $0.00 (10% GST) = $0.00
+                </div>
+              </div>
+            </div>
+            
+            <!-- Reset Button -->
+            <div class="pt-2">
+              <button 
+                class="w-full py-3 px-4 font-medium bg-blue-500 hover:bg-blue-600 text-white transition-colors rounded-md"
+                onclick="calculateAddGst()"
+              >
+                Calculate
+              </button>
+              <button 
+                class="w-full mt-2 py-3 px-4 font-medium bg-gray-200 hover:bg-gray-300 text-gray-800 transition-colors rounded-md"
+                onclick="resetAddGst()"
+              >
+                Reset
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Remove GST Box -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 md:p-8">
+          <div class="space-y-5">
+            <h2 class="text-xl font-bold text-blue-500 mb-4">Remove GST</h2>
+            
+            <!-- Amount Input -->
+            <div class="space-y-2">
+              <label for="removeAmount" class="text-sm font-medium text-gray-700">
+                Enter Amount (GST Inclusive)
+              </label>
+              <input
+                type="number"
+                id="removeAmount"
+                placeholder="0.00"
+                class="w-full px-3 py-3 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+              />
+            </div>
+            
+            <!-- GST Percentage Input -->
+            <div class="space-y-2">
+              <label for="removeGstPercentage" class="text-sm font-medium text-gray-700">
+                Enter GST Percentage
+              </label>
+              <input
+                type="number"
+                id="removeGstPercentage"
+                placeholder="10"
+                value="10"
+                class="w-full px-3 py-3 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+              />
+            </div>
+            
+            <!-- Results Section -->
+            <div id="removeGstResults" class="hidden bg-gray-50 rounded-lg p-4 border border-gray-200 animate-fade-in">
+              <h3 class="text-sm font-medium text-gray-700 mb-3">Results</h3>
+              <div class="space-y-3">
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <p class="text-xs text-gray-500 mb-1">GST Amount:</p>
+                    <p id="removeGstAmount" class="text-lg font-medium text-gray-800">$0.00</p>
+                  </div>
+                  <div>
+                    <p class="text-xs text-gray-500 mb-1">Amount without GST:</p>
+                    <p id="removeFinalAmount" class="text-lg font-bold text-blue-500">$0.00</p>
+                  </div>
+                </div>
+                
+                <div class="pt-2 text-xs text-gray-500" id="removeGstFormula">
+                  $0.00 - $0.00 (10% GST) = $0.00
+                </div>
+              </div>
+            </div>
+            
+            <!-- Reset Button -->
+            <div class="pt-2">
+              <button 
+                class="w-full py-3 px-4 font-medium bg-blue-500 hover:bg-blue-600 text-white transition-colors rounded-md"
+                onclick="calculateRemoveGst()"
+              >
+                Calculate
+              </button>
+              <button 
+                class="w-full mt-2 py-3 px-4 font-medium bg-gray-200 hover:bg-gray-300 text-gray-800 transition-colors rounded-md"
+                onclick="resetRemoveGst()"
+              >
+                Reset
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="profit-loss" class="calculator-section py-6 md:py-8 px-4 hidden">
+    <header class="text-center mb-6">
+      <h1 class="text-3xl md:text-4xl font-bold text-blue-500 mb-2 tracking-tight">
+        Profit/Loss Calculator
+      </h1>
+      <p class="text-gray-600 max-w-md mx-auto">
+        Quickly calculate your profit or loss on any transaction!
+      </p>
+    </header>
+
+    <div class="flex justify-center">
+      <div class="w-full max-w-md bg-white rounded-xl shadow-md overflow-hidden p-6 md:p-8">
+        <div class="space-y-6">
+          <!-- Cost Price Input -->
+          <div class="space-y-2">
+            <label for="costPrice" class="text-sm font-medium text-gray-700">
+              Cost Price (CP)
+            </label>
+            <input
+              type="number"
+              id="costPrice"
+              placeholder="0.00"
+              class="w-full px-3 py-3 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+            />
+          </div>
+          
+          <!-- Selling Price Input -->
+          <div class="space-y-2">
+            <label for="sellingPrice" class="text-sm font-medium text-gray-700">
+              Selling Price (SP)
+            </label>
+            <input
+              type="number"
+              id="sellingPrice"
+              placeholder="0.00"
+              class="w-full px-3 py-3 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+            />
+          </div>
+          
+          <!-- Results Section -->
+          <div id="profitLossResults" class="hidden animate-fade-in">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-xs text-gray-500 mb-1" id="plAmountLabel">
+                    Profit/Loss Amount:
+                  </p>
+                  <p id="plAmount" class="text-xl font-bold">
+                    $0.00
+                  </p>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500 mb-1" id="plPercentageLabel">
+                    Profit/Loss Percentage:
+                  </p>
+                  <p id="plPercentage" class="text-xl font-bold">
+                    0.00%
+                  </p>
+                </div>
+              </div>
+              
+              <div class="text-xs text-gray-600 pt-2" id="plFormula">
+                Calculation details will appear here
+              </div>
+            </div>
+          </div>
+          
+          <!-- Calculate Button -->
+          <div class="pt-2">
+            <button 
+              class="w-full py-3 px-4 font-medium bg-blue-500 hover:bg-blue-600 text-white transition-colors rounded-md"
+              onclick="calculateProfitLoss()"
+            >
+              Calculate
+            </button>
+            <button 
+              class="w-full mt-2 py-3 px-4 font-medium bg-gray-200 hover:bg-gray-300 text-gray-800 transition-colors rounded-md"
+              onclick="resetProfitLoss()"
+            >
+              Reset
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="py-6 px-4 text-center text-gray-500 text-sm mt-auto">
+    <p>Made with ❤️ for quick calculations!</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
