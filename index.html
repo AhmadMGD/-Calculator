@@ -391,88 +391,185 @@
       </div>
     </div>
   </div>
-<body class="bg-white text-gray-800 font-sans leading-relaxed antialiased">
-  <main class="max-w-3xl mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold mb-6 text-center">Free Online Percentage Calculator</h1>
 
-    <p class="text-lg mb-6 text-center">
-      Calculate percentages, discounts, increases or decreases — fast and free. Our online percentage calculator is perfect for students, business owners, shoppers, and anyone needing quick, accurate results.
-    </p>
+  
+<body class="bg-gray-50 min-h-screen">
+    <nav class="bg-white shadow-md sticky top-0 z-10 py-2">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-center h-16">
+                <div class="flex items-center">
+                    <div class="bg-gray-100 p-1.5 rounded-xl flex space-x-1">
+                        <a href="#percentage" onclick="showCalculator('percentage')" class="calculator-tab active-tab px-5 py-3 text-sm font-medium transition-all duration-200 rounded-lg mx-1">
+                            <span class="mr-2">%</span> Percentage Calculator
+                        </a>
+                        <a href="#gst" onclick="showCalculator('gst')" class="calculator-tab px-5 py-3 text-sm font-medium transition-all duration-200 rounded-lg mx-1">
+                            <span class="mr-2">$</span> GST Calculator
+                        </a>
+                        <a href="#profit-loss" onclick="showCalculator('profit-loss')" class="calculator-tab px-5 py-3 text-sm font-medium transition-all duration-200 rounded-lg mx-1">
+                            <span class="mr-2">↗</span> Profit/Loss Calculator
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-    <!-- Calculator Tool Placeholder -->
-    <div class="mb-8">
-      <!-- Insert your calculator HTML & logic here -->
+    <div id="percentage" class="calculator-section py-6 md:py-8 px-4">
+        <header class="text-center mb-6">
+            <h1 class="text-3xl md:text-4xl font-bold text-blue-500 mb-2 tracking-tight">
+                Percentage Calculator
+            </h1>
+            <p class="text-gray-600 max-w-md mx-auto">
+                Quickly calculate percentages, discounts, increases or decreases.
+            </p>
+        </header>
+
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Standard Calculator -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 md:p-8">
+                    <h2 class="text-xl font-bold text-blue-500 mb-4">Standard</h2>
+                    <div class="space-y-5">
+                        <div class="space-y-2">
+                            <label for="standardNumber" class="text-sm font-medium text-gray-700">Number</label>
+                            <input type="number" id="standardNumber" placeholder="0" class="w-full px-3 py-3 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                        </div>
+
+                        <div class="space-y-2">
+                            <label for="standardPercentage" class="text-sm font-medium text-gray-700">Percentage</label>
+                            <input type="number" id="standardPercentage" placeholder="0" class="w-full px-3 py-3 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                        </div>
+
+                        <div id="standardResult" class="hidden bg-gray-50 rounded-lg p-4 border border-gray-200 animate-fade-in">
+                            <h3 class="text-sm font-medium text-gray-700 mb-3">Result</h3>
+                            <p id="standardResultValue" class="text-lg font-bold text-blue-500">0</p>
+                        </div>
+
+                        <button onclick="calculateStandard()" class="w-full py-3 px-4 font-medium bg-blue-500 hover:bg-blue-600 text-white transition-colors rounded-md">Calculate</button>
+                        <button onclick="resetStandard()" class="w-full py-3 px-4 font-medium bg-gray-200 hover:bg-gray-300 text-gray-800 transition-colors rounded-md">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <section class="mb-10">
-      <h2 class="text-2xl font-semibold mb-3">What This Percentage Calculator Can Do</h2>
-      <ul class="list-disc list-inside space-y-2">
-        <li>Find what <strong>percent</strong> one number is of another</li>
-        <li>Calculate a <strong>percentage of any number</strong></li>
-        <li>Compute <strong>percentage increase or decrease</strong></li>
-        <li>Determine <strong>discounted prices</strong> while shopping</li>
-        <li>Compare values with <strong>percentage difference</strong></li>
-      </ul>
-    </section>
+    <div id="gst" class="calculator-section py-6 md:py-8 px-4 hidden">
+        <header class="text-center mb-6">
+            <h1 class="text-3xl md:text-4xl font-bold text-blue-500 mb-2 tracking-tight">
+                GST Calculator
+            </h1>
+            <p class="text-gray-600 max-w-md mx-auto">
+                Easily add or remove GST from any amount!
+            </p>
+        </header>
 
-    <section class="mb-10">
-      <h2 class="text-2xl font-semibold mb-3">Why Use This Percentage Tool?</h2>
-      <ul class="list-disc list-inside space-y-2">
-        <li>100% free to use</li>
-        <li>Fast and mobile-friendly interface</li>
-        <li>Instant and accurate results</li>
-        <li>No login, no ads, no distractions</li>
-        <li>Works on all devices and browsers</li>
-      </ul>
-    </section>
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Add GST Box -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 md:p-8">
+                    <div class="space-y-5">
+                        <h2 class="text-xl font-bold text-blue-500 mb-4">Add GST</h2>
 
-    <section class="mb-10">
-      <h2 class="text-2xl font-semibold mb-3">Common Use Cases</h2>
-      <p class="mb-2">This tool is useful for:</p>
-      <ul class="list-disc list-inside space-y-2">
-        <li>Finding <strong>sale prices</strong> during online shopping</li>
-        <li>Calculating <strong>tips</strong> at restaurants</li>
-        <li>Analyzing <strong>data changes</strong> in business reports</li>
-        <li>Solving <strong>math homework</strong> quickly</li>
-        <li>Estimating <strong>interest rates or profit margins</strong></li>
-      </ul>
-    </section>
+                        <!-- Amount Input -->
+                        <div class="space-y-2">
+                            <label for="addAmount" class="text-sm font-medium text-gray-700">
+                                Enter Amount
+                            </label>
+                            <input type="number" id="addAmount" placeholder="0.00" class="w-full px-3 py-3 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors" />
+                        </div>
 
-    <section class="mb-10">
-      <h2 class="text-2xl font-semibold mb-3">How to Use the Calculator</h2>
-      <ol class="list-decimal list-inside space-y-2">
-        <li>Enter the values you want to calculate</li>
-        <li>Select the type of calculation (percent of, increase, decrease, etc.)</li>
-        <li>Click the “Calculate” button</li>
-        <li>See your result instantly below</li>
-      </ol>
-    </section>
+                        <!-- GST Percentage Input -->
+                        <div class="space-y-2">
+                            <label for="addGstPercentage" class="text-sm font-medium text-gray-700">
+                                Enter GST Percentage
+                            </label>
+                            <input type="number" id="addGstPercentage" placeholder="10" value="10" class="w-full px-3 py-3 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors" />
+                        </div>
 
-    <!-- SEO-Friendly FAQ Section for Rich Snippets -->
-    <section class="mb-10">
-      <h2 class="text-2xl font-semibold mb-3">Frequently Asked Questions</h2>
+                        <!-- Results Section -->
+                        <div id="addGstResults" class="hidden bg-gray-50 rounded-lg p-4 border border-gray-200 animate-fade-in">
+                            <h3 class="text-sm font-medium text-gray-700 mb-3">Results</h3>
+                            <div class="space-y-3">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <p class="text-xs text-gray-500 mb-1">GST Amount:</p>
+                                        <p id="addGstAmount" class="text-lg font-medium text-gray-800">$0.00</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-gray-500 mb-1">Amount with GST:</p>
+                                        <p id="addFinalAmount" class="text-lg font-bold text-blue-500">$0.00</p>
+                                    </div>
+                                </div>
 
-      <div class="mb-4">
-        <h3 class="font-semibold">What is a percentage?</h3>
-        <p>A percentage is a number or ratio expressed as a fraction of 100. It's commonly used to compare values, express discounts, and show changes.</p>
-      </div>
+                                <div class="pt-2 text-xs text-gray-500" id="addGstFormula">
+                                    $0.00 + $0.00 (10% GST) = $0.00
+                                </div>
+                            </div>
+                        </div>
 
-      <div class="mb-4">
-        <h3 class="font-semibold">How do I calculate a percentage?</h3>
-        <p>To find X% of Y, multiply X by Y and divide by 100. This tool does the math for you instantly.</p>
-      </div>
+                        <!-- Reset Button -->
+                        <div class="pt-2">
+                            <button class="w-full py-3 px-4 font-medium bg-blue-500 hover:bg-blue-600 text-white transition-colors rounded-md" onclick="calculateAddGst()">
+                                Calculate
+                            </button>
+                            <button class="w-full mt-2 py-3 px-4 font-medium bg-gray-200 hover:bg-gray-300 text-gray-800 transition-colors rounded-md" onclick="resetAddGst()">
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-      <div class="mb-4">
-        <h3 class="font-semibold">How is percentage difference calculated?</h3>
-        <p>The percentage difference is the absolute difference between two values, divided by their average, then multiplied by 100.</p>
-      </div>
+    <div id="profit-loss" class="calculator-section py-6 md:py-8 px-4 hidden">
+        <header class="text-center mb-6">
+            <h1 class="text-3xl md:text-4xl font-bold text-blue-500 mb-2 tracking-tight">
+                Profit/Loss Calculator
+            </h1>
+            <p class="text-gray-600 max-w-md mx-auto">
+                Quickly calculate your profit or loss on any transaction!
+            </p>
+        </header>
 
-      <div class="mb-4">
-        <h3 class="font-semibold">Can I use this tool for discounts?</h3>
-        <p>Yes! Just enter the original price and discount percent — it will show you the final price instantly.</p>
-      </div>
-    </section>
-  </main>
+        <div class="flex justify-center">
+            <div class="w-full max-w-md bg-white rounded-xl shadow-md overflow-hidden p-6 md:p-8">
+                <div class="space-y-6">
+                    <!-- Cost Price Input -->
+                    <div class="space-y-2">
+                        <label for="costPrice" class="text-sm font-medium text-gray-700">
+                            Cost Price (CP)
+                        </label>
+                        <input type="number" id="costPrice" placeholder="0.00" class="w-full px-3 py-3 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors" />
+                    </div>
+
+                    <!-- Selling Price Input -->
+                    <div class="space-y-2">
+                        <label for="sellingPrice" class="text-sm font-medium text-gray-700">
+                            Selling Price (SP)
+                        </label>
+                        <input type="number" id="sellingPrice" placeholder="0.00" class="w-full px-3 py-3 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors" />
+                    </div>
+
+                    <!-- Results Section -->
+                    <div id="profitLossResults" class="hidden bg-gray-50 rounded-lg p-4 border border-gray-200 animate-fade-in">
+                        <h3 class="text-sm font-medium text-gray-700 mb-3">Result</h3>
+                        <p id="profitLossResultText" class="text-lg font-medium text-blue-500">$0.00</p>
+                        <p id="profitLossPercentageText" class="text-sm text-gray-600">0%</p>
+                    </div>
+
+                    <button onclick="calculateProfitLoss()" class="w-full py-3 px-4 font-medium bg-blue-500 hover:bg-blue-600 text-white transition-colors rounded-md">Calculate</button>
+                    <button onclick="resetProfitLoss()" class="w-full py-3 px-4 font-medium bg-gray-200 hover:bg-gray-300 text-gray-800 transition-colors rounded-md">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-gray-800 text-white text-center py-6 mt-10">
+        <p>&copy; 2025 Ahmad MGD | All Rights Reserved</p>
+    </footer>
+
+    <script src="scripts.js"></script>
 </body>
 
   <footer class="py-6 px-4 text-center text-gray-500 text-sm mt-auto">
